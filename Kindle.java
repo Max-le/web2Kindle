@@ -6,10 +6,13 @@ public class Kindle{
 
 
 	public static void main(String[] args) {
-	Rssfile myrss = new Rssfile() ; 
+		String adress = new String() ;
+		adress = "https://www.lemonde.fr/rss/une.xml";
+		System.out.println(adress); 
+		
 
-	 myrss.adress = "https://www.lemonde.fr/pixels/rss_full.xml";
-	 myrss.checkAdress();
+
+
 
 	}
 }
