@@ -6,10 +6,10 @@ import java.io.*;
 
 public class Kindle{
 
-		static final boolean DEBUG = false ; 
+		static final boolean DEBUG = true ; 
 
 		public static void main(String[] args) {
-		final String ADRESS = "https://www.lemonde.fr/rss/une.xml";
+		final String ADRESS = "http://rss.cnn.com/rss/edition_technology.rss";
 		String links = readRSS(ADRESS);
 		System.out.println(links);
 
@@ -19,6 +19,10 @@ public class Kindle{
 		System.out.println("URL adress : " +adress);
 
 		try{
+
+			//Array to store items
+			String[] items = new String[10000];
+
 
 		//Create URL Object 
 			URL rssURL = new URL(adress);
@@ -30,6 +34,7 @@ public class Kindle{
 
 			//read line-by-line, continue loop while the current line is not empty
 			while ((line = in.readLine()) != null ){
+				int index_array = 0;
 				String keyword = "title";
 				if (line.contains("<"+keyword+">")){
 					int firstPos = line.indexOf("<"+keyword+">");
@@ -40,8 +45,10 @@ public class Kindle{
 					int lastPos = temp.indexOf("</"+keyword+">");
 					if (DEBUG) System.out.println(lastPos);
 					temp = temp.substring(0, lastPos);
-					if (DEBUG) System.out.println(temp);
+					if (DEBUG) System.out.println("temp : "+temp);
+					items[index_array] = temp;
 					source_code += temp + "\n \n"; 
+					index_array++;
 
 				}
 
