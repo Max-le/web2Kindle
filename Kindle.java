@@ -30,13 +30,16 @@ public class Kindle{
 			//read line-by-line, continue loop while the current line is not empty
 			while ((line = in.readLine()) != null ){
 
-				if (line.contains("<title>")){
-					int firstPos = line.indexOf("<title>");
+				String keyword = "title";
+
+
+				if (line.contains("<"+keyword+">")){
+					int firstPos = line.indexOf("<"+keyword+">");
 					if (DEBUG) System.out.println(firstPos);
 					String temp = line.substring(firstPos);
 				//remove the tag ( replace by nothing)
-					temp = temp.replace("<title>","");
-					int lastPos = temp.indexOf("</title>");
+					temp = temp.replace("<"+keyword+">","");
+					int lastPos = temp.indexOf("</"+keyword+">");
 					if (DEBUG) System.out.println(lastPos);
 					temp = temp.substring(0, lastPos);
 					if (DEBUG) System.out.println(temp);
