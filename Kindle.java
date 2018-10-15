@@ -1,6 +1,8 @@
 import java.net.*;
 import java.io.*;
 
+		//TODO : mettre tous les liens dans une array
+
 
 public class Kindle{
 
