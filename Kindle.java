@@ -6,10 +6,10 @@ public class Kindle{
 
 		static final boolean DEBUG = false ; 
 
-	public static void main(String[] args) {
-		final String ADRESS = "http://rss.cnn.com/rss/edition_technology.rss";
-		String headlines = readRSS(ADRESS);
-		System.out.println(headlines);
+		public static void main(String[] args) {
+		final String ADRESS = "https://www.lemonde.fr/rss/une.xml";
+		String links = readRSS(ADRESS);
+		System.out.println(links);
 
 
 	}
@@ -39,7 +39,7 @@ public class Kindle{
 					if (DEBUG) System.out.println(lastPos);
 					temp = temp.substring(0, lastPos);
 					if (DEBUG) System.out.println(temp);
-					source_code += temp + "\n"; 
+					source_code += temp + "\n \n"; 
 
 				}
 
