@@ -21,7 +21,6 @@ public class Kindle{
 		//Create URL Object 
 			URL rssURL = new URL(adress);
 
-			//
 			BufferedReader in = new BufferedReader( new InputStreamReader(rssURL.openStream()));
 
 			String source_code="";
@@ -29,10 +28,7 @@ public class Kindle{
 
 			//read line-by-line, continue loop while the current line is not empty
 			while ((line = in.readLine()) != null ){
-
 				String keyword = "title";
-
-
 				if (line.contains("<"+keyword+">")){
 					int firstPos = line.indexOf("<"+keyword+">");
 					if (DEBUG) System.out.println(firstPos);
