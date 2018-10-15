@@ -1,22 +1,67 @@
-import java.lang.Object;
-
+import java.net.*;
+import java.io.*;
 
 
 public class Kindle{
 
+		static final boolean DEBUG = false ; 
 
 	public static void main(String[] args) {
-		String adress = new String() ;
-		adress = "https://www.lemonde.fr/rss/une.xml";
-		System.out.println(adress); 
-		
-
-
+		final String ADRESS = "http://rss.cnn.com/rss/edition_technology.rss";
+		String headlines = readRSS(ADRESS);
+		System.out.println(headlines);
 
 
 	}
+	public static String readRSS(String adress){
+		System.out.println("URL adress : " +adress);
+
+		try{
+
+		//Create URL Object 
+			URL rssURL = new URL(adress);
+
+			//
+			BufferedReader in = new BufferedReader( new InputStreamReader(rssURL.openStream()));
+
+			String source_code="";
+			String line;
+
+			//read line-by-line, continue loop while the current line is not empty
+			while ((line = in.readLine()) != null ){
+
+				if (line.contains("<title>")){
+					int firstPos = line.indexOf("<title>");
+					if (DEBUG) System.out.println(firstPos);
+					String temp = line.substring(firstPos);
+				//remove the tag ( replace by nothing)
+					temp = temp.replace("<title>","");
+					int lastPos = temp.indexOf("</title>");
+					if (DEBUG) System.out.println(lastPos);
+					temp = temp.substring(0, lastPos);
+					if (DEBUG) System.out.println(temp);
+					source_code += temp + "\n"; 
+
+				}
+
+		}//end while loop
+		in.close();//close buffered reader
+		return source_code;
+	}
+	catch (MalformedURLException ue ){
+		System.out.println("Error : the url is incorrect.");
+	}
+	catch (IOException ioe ) {
+		System.out.println("Error while reading the contents.");
+	}
+	return null;
+
+
+
+
+
+}
 }
 
 
 
- 

@@ -1,0 +1,39 @@
+import java.net.*;
+import java.io.*;
+
+
+public class Kindle{
+
+
+	public static void main(String[] args) {
+		final String adress = "https://www.lemonde.fr/rss/une.xml";
+
+
+	}
+	public static String readRSS(String adress){
+		System.out.println("URL adress : " +adress);
+
+		//Create URL Object 
+		URL rssURL = new URL(adress);
+
+		BufferedReader in = new BufferedReader( new InputStreamReader(rssURL.openStream()));
+
+		String source_code="";
+		String line;
+		while ((line = in.readLine()) != null ){
+
+			if (line.contains("<title"))
+
+
+
+		}
+
+
+
+
+		return source_code;
+	}
+}
+
+
+
