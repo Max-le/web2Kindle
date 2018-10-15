@@ -21,6 +21,7 @@ public class Kindle{
 				System.out.println(i + " - "+links[i]);
 			}
 		}
+		saveHTMLdoc("https://www.lemonde.fr");
 
 	}
 	public static String[] readRSS(String adress){
@@ -42,7 +43,7 @@ public class Kindle{
 
 			//read line-by-line, continue loop while the current line is not empty
 			while ((line = in.readLine()) != null ){
-				String keyword = "title";
+				String keyword = "link";
 				if (line.contains("<"+keyword+">")){
 					int firstPos = line.indexOf("<"+keyword+">");
 					if (DEBUG) System.out.println(firstPos);
@@ -83,6 +84,40 @@ public static int non_null_lentgh(String[] a){
 	while (a[i] != null) i++;
 	return i ; 
 }
+
+public static void saveHTMLdoc(String adress){
+	try { 
+
+            // Create URL object 
+		URL url = new URL(adress); 
+		BufferedReader readr =  
+		new BufferedReader(new InputStreamReader(url.openStream())); 
+
+            // Enter filename in which you want to download 
+		BufferedWriter writer =  
+		new BufferedWriter(new FileWriter("article.html")); 
+
+            // read each line from stream till end 
+		String line; 
+		while ((line = readr.readLine()) != null) { 
+			writer.write(line); 
+		} 
+
+		readr.close(); 
+		writer.close(); 
+		System.out.println("Successfully Downloaded."); 
+	} 
+
+        // Exceptions 
+	catch (MalformedURLException mue) { 
+		System.out.println("Malformed URL Exception raised"); 
+	} 
+	catch (IOException ie) { 
+		System.out.println("IOException raised"); 
+	} 
+
+}
+
 }
 
 
