@@ -1,6 +1,7 @@
 import java.net.*;
 import java.io.*;
 import java.util.*;
+import java.awt.*;
 
 		//TODO : mettre tous les liens dans une array
 
@@ -137,6 +138,7 @@ public static void sendWithChrome(String adress){
 	catch (IOException io){
 		System.out.println("Error.");
 	}
+
 }
 
 }
