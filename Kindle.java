@@ -10,7 +10,7 @@ public class Kindle{
 	static final boolean DEBUG = false ; 
 
 	public static void main(String[] args) {
-				sendWithChrome("https://www.economist.com/business/2018/07/19/the-nord-stream-2-pipeline-will-strengthen-russias-hand");
+		sendWithChrome("https://www.economist.com/business/2018/07/19/the-nord-stream-2-pipeline-will-strengthen-russias-hand");
 
 		final String ADRESS = "https://www.economist.com/business/rss.xml";
 		String[] links = readRSS(ADRESS);
@@ -125,18 +125,18 @@ public static void saveHTMLdoc(String adress,String outputName){
 }// end saveHTMLDoc method
 
 public static void sendWithChrome(String adress){
-try{
+	try{
 
 
-if ( DEBUG) System.out.println("in sendWithChrome()...");
+		if ( DEBUG) System.out.println("in sendWithChrome()...");
 
-String[] args = new String[] {"open","-a","Google Chrome" ,"tmp/article20.html"};
-Process proc = new ProcessBuilder(args).start();
+		String[] args = new String[] {"open","-a","Google Chrome" ,"tmp/article20.html"};
+		Process proc = new ProcessBuilder(args).start();
 
 	}
-		catch (IOException io){
-			System.out.println("Error.");
-		}
+	catch (IOException io){
+		System.out.println("Error.");
+	}
 }
 
 }
