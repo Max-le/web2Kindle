@@ -7,10 +7,12 @@ import java.util.*;
 
 public class Kindle{
 
-	static final boolean DEBUG = true ; 
+	static final boolean DEBUG = false ; 
 
 	public static void main(String[] args) {
-		final String ADRESS = "http://www.lalibre.be/rss/section/actu.xml";
+				sendWithChrome("https://www.economist.com/business/2018/07/19/the-nord-stream-2-pipeline-will-strengthen-russias-hand");
+
+		final String ADRESS = "https://www.economist.com/business/rss.xml";
 		String[] links = readRSS(ADRESS);
 		//System.out.println(links);
 
@@ -21,7 +23,7 @@ public class Kindle{
 				System.out.println(i + " - "+links[i]);
 				String name_article = "tmp/article"+i+".html";
 				System.out.println("Saving...");
-				saveHTMLdoc(links[i],name_article);
+				// saveHTMLdoc(links[i],name_article);
 			}
 		}
 
@@ -120,6 +122,21 @@ public static void saveHTMLdoc(String adress,String outputName){
 		System.out.println("IOException raised"); 
 	} 
 
+}// end saveHTMLDoc method
+
+public static void sendWithChrome(String adress){
+try{
+
+
+if ( DEBUG) System.out.println("in sendWithChrome()...");
+
+String[] args = new String[] {"open","-a","Google Chrome" ,"tmp/article20.html"};
+Process proc = new ProcessBuilder(args).start();
+
+	}
+		catch (IOException io){
+			System.out.println("Error.");
+		}
 }
 
 }
