@@ -10,7 +10,7 @@ public class Kindle{
 	static final boolean DEBUG = true ; 
 
 	public static void main(String[] args) {
-		final String ADRESS = "http://rss.cnn.com/rss/edition_technology.rss";
+		final String ADRESS = "http://www.lalibre.be/rss/section/actu.xml";
 		String[] links = readRSS(ADRESS);
 		//System.out.println(links);
 
@@ -19,9 +19,11 @@ public class Kindle{
 			System.out.println("The array : ");
 			for(int i = 0 ; i < non_null_lentgh(links) ; i++){
 				System.out.println(i + " - "+links[i]);
+				String name_article = "tmp/article"+i+".html";
+				System.out.println("Saving...");
+				saveHTMLdoc(links[i],name_article);
 			}
 		}
-		saveHTMLdoc("https://www.lemonde.fr");
 
 	}
 	public static String[] readRSS(String adress){
@@ -85,7 +87,9 @@ public static int non_null_lentgh(String[] a){
 	return i ; 
 }
 
-public static void saveHTMLdoc(String adress){
+public static void saveHTMLdoc(String adress,String outputName){
+
+
 	try { 
 
             // Create URL object 
@@ -95,7 +99,7 @@ public static void saveHTMLdoc(String adress){
 
             // Enter filename in which you want to download 
 		BufferedWriter writer =  
-		new BufferedWriter(new FileWriter("article.html")); 
+		new BufferedWriter(new FileWriter(outputName)); 
 
             // read each line from stream till end 
 		String line; 
@@ -105,7 +109,7 @@ public static void saveHTMLdoc(String adress){
 
 		readr.close(); 
 		writer.close(); 
-		System.out.println("Successfully Downloaded."); 
+		System.out.println( outputName+" was successfully Downloaded."); 
 	} 
 
         // Exceptions 
