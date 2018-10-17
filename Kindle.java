@@ -14,7 +14,8 @@ public class Kindle{
 
 		final String ADRESS = "http://rss.nytimes.com/services/xml/rss/nyt/Technology.xml";
 		String[] links = readRSS(ADRESS);
-
+		System.out.println("Waiting...");
+		open_in_Chrome(links[4]);
 		try{
 			TimeUnit.SECONDS.sleep(5);
 		}
@@ -22,6 +23,7 @@ public class Kindle{
 		{
 		System.out.println("InterruptedException");		
 		}
+
 
 
 	}
@@ -135,6 +137,15 @@ public static void open_in_Chrome(String adress){
 		System.out.println("Error.");
 	}
 
+}
+public static void pressALT_K_in_Chrome(){
+	try{
+		String[] args = new String[] {"open","press_ALT_K.app"};
+		Process proc = new ProcessBuilder(args).start();
+	}
+	catch (IOException io){
+		System.out.println("Error.");
+	}
 }
 
 }
