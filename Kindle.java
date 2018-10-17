@@ -2,8 +2,7 @@ import java.net.*;
 import java.io.*;
 import java.util.*;
 import java.awt.*;
-
-		//TODO : mettre tous les liens dans une array
+import java.util.concurrent.TimeUnit;
 
 
 public class Kindle{
@@ -13,21 +12,17 @@ public class Kindle{
 	public static void main(String[] args) {
 		//open_in_Chrome("https://www.economist.com/business/2018/07/19/the-nord-stream-2-pipeline-will-strengthen-russias-hand");
 
-		final String ADRESS = "https://www.economist.com/business/rss.xml";
+		final String ADRESS = "http://rss.nytimes.com/services/xml/rss/nyt/Technology.xml";
 		String[] links = readRSS(ADRESS);
-		//System.out.println(links);
-		System.out.println(links[0]);
 
-		if (DEBUG){
-			System.out.println("# of non-null elements : "+ non_null_lentgh(links));
-			System.out.println("The array : ");
-			for(int i = 0 ; i < non_null_lentgh(links) ; i++){
-				System.out.println(i + " - "+links[i]);
-				String name_article = "tmp/article"+i+".html";
-				//System.out.println("Saving...");
-				// saveHTMLdoc(links[i],name_article);
-			}
+		try{
+			TimeUnit.SECONDS.sleep(5);
 		}
+		catch(InterruptedException ex)
+		{
+		System.out.println("InterruptedException");		
+		}
+
 
 	}
 	public static String[] readRSS(String adress){
@@ -49,7 +44,7 @@ public class Kindle{
 
 			//read line-by-line, continue loop while the current line is not empty
 			while ((line = in.readLine()) != null ){
-				String keyword = "link";
+				String keyword = "title";
 				if (line.contains("<"+keyword+">")){
 					int firstPos = line.indexOf("<"+keyword+">");
 					if (DEBUG) System.out.println(firstPos);
