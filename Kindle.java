@@ -14,55 +14,71 @@ public class Kindle{
 
 		final String ADRESS = "http://rss.nytimes.com/services/xml/rss/nyt/Technology.xml";
 		String[] links = readRSS(ADRESS);
-		System.out.println("Waiting...");
-		open_in_Chrome(links[4]);
-		try{
-			TimeUnit.SECONDS.sleep(5);
+			System.out.println("# of non-null elements : "+ non_null_lentgh(links));
+			System.out.println("The array : ");
+			System.out.println();
+
+			for(int i = 0 ; i < non_null_lentgh(links) ; i++){
+				System.out.println(i + " - "+links[i]);
+				String name_article = "tmp/article"+i+".html";
+				//System.out.println("Saving...");
+				//saveHTMLdoc(links[i],name_article);
+			}
+		
+
+
+			System.out.println("Waiting...");
+		    open_in_Chrome(links[22]);
+			try{
+				TimeUnit.SECONDS.sleep(10);
+			}
+			catch(InterruptedException ex)
+			{
+				System.out.println("InterruptedException");		
+			}
+			System.out.println("Press ALT+K...");
+		   pressALT_K_in_Chrome();
+		   System.out.println("Done.");
+
+
+
 		}
-		catch(InterruptedException ex)
-		{
-		System.out.println("InterruptedException");		
-		}
+		public static String[] readRSS(String adress){
+			System.out.println("URL adress : " +adress);
 
-
-
-	}
-	public static String[] readRSS(String adress){
-		System.out.println("URL adress : " +adress);
-
-		try{
+			try{
 
 			//Array to store items
-			String[] items = new String[10000];
+				String[] items = new String[10000];
 
 		//Create URL Object 
-			URL rssURL = new URL(adress);
+				URL rssURL = new URL(adress);
 
-			BufferedReader in = new BufferedReader( new InputStreamReader(rssURL.openStream()));
+				BufferedReader in = new BufferedReader( new InputStreamReader(rssURL.openStream()));
 
-			String source_code="";
-			String line;
-			int index_array = 0;
+				String source_code="";
+				String line;
+				int index_array = 0;
 
 			//read line-by-line, continue loop while the current line is not empty
-			while ((line = in.readLine()) != null ){
-				String keyword = "title";
-				if (line.contains("<"+keyword+">")){
-					int firstPos = line.indexOf("<"+keyword+">");
-					if (DEBUG) System.out.println(firstPos);
-					String temp = line.substring(firstPos);
+				while ((line = in.readLine()) != null ){
+					String keyword = "link";
+					if (line.contains("<"+keyword+">")){
+						int firstPos = line.indexOf("<"+keyword+">");
+						if (DEBUG) System.out.println(firstPos);
+						String temp = line.substring(firstPos);
 				//remove the tag ( replace by nothing)
-					temp = temp.replace("<"+keyword+">","");
-					int lastPos = temp.indexOf("</"+keyword+">");
-					if (DEBUG) System.out.println(lastPos);
-					temp = temp.substring(0, lastPos);
-					if (DEBUG) System.out.println("temp : "+temp);
-					items[index_array] = temp;
-					if (DEBUG) System.out.println(index_array + " in array : "+ items[index_array]);
-					source_code += temp + "\n \n"; 
-					index_array = index_array + 1 ;
+						temp = temp.replace("<"+keyword+">","");
+						int lastPos = temp.indexOf("</"+keyword+">");
+						if (DEBUG) System.out.println(lastPos);
+						temp = temp.substring(0, lastPos);
+						if (DEBUG) System.out.println("temp : "+temp);
+						items[index_array] = temp;
+						if (DEBUG) System.out.println(index_array + " in array : "+ items[index_array]);
+						source_code += temp + "\n \n"; 
+						index_array = index_array + 1 ;
 
-				}
+					}
 
 		}//end while loop
 		in.close();//close buffered reader
@@ -138,6 +154,8 @@ public static void open_in_Chrome(String adress){
 	}
 
 }
+
+//!!!this method will press ALT+K in Chrome, which will send the article to the device.
 public static void pressALT_K_in_Chrome(){
 	try{
 		String[] args = new String[] {"open","press_ALT_K.app"};
