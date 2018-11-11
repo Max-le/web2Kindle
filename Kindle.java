@@ -37,12 +37,12 @@ public class Kindle{
 				System.out.println("InterruptedException");		
 			}
 			System.out.println("Press ALT+K...");
-		   pressALT_K_in_Chrome();
+		   //pressALT_K_in_Chrome();
 		   System.out.println("Done.");
 
 
 
-		}
+		}//End MAIN
 		public static String[] readRSS(String adress){
 			System.out.println("URL adress : " +adress);
 
