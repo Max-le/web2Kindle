@@ -27,21 +27,6 @@ public class Kindle{
 		
 
 
-			System.out.println("Waiting...");
-		    open_in_Chrome(links[22]);
-			try{
-				TimeUnit.SECONDS.sleep(10);
-			}
-			catch(InterruptedException ex)
-			{
-				System.out.println("InterruptedException");		
-			}
-			System.out.println("Press ALT+K...");
-		   //pressALT_K_in_Chrome();
-		   System.out.println("Done.");
-
-
-
 		}//End MAIN
 		public static String[] readRSS(String adress){
 			System.out.println("URL adress : " +adress);
@@ -138,35 +123,8 @@ public static void saveHTMLdoc(String adress,String outputName){
 	} 
 
 }// end saveHTMLDoc method
-
-public static void open_in_Chrome(String adress){
-	try{
-
-
-		if ( DEBUG) System.out.println("Opening in Chrome...");
-
-		String[] args = new String[] {"open","-a","Google Chrome" ,adress};
-		Process proc = new ProcessBuilder(args).start();
-
-	}
-	catch (IOException io){
-		System.out.println("Error.");
-	}
-
 }
 
-//!!!this method will press ALT+K in Chrome, which will send the article to the device.
-public static void pressALT_K_in_Chrome(){
-	try{
-		String[] args = new String[] {"open","press_ALT_K.app"};
-		Process proc = new ProcessBuilder(args).start();
-	}
-	catch (IOException io){
-		System.out.println("Error.");
-	}
-}
-
-}
 
 
 
