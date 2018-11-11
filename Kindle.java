@@ -10,20 +10,38 @@ public class Kindle{
 	static final boolean DEBUG = true ; 
 
 	public static void main(String[] args) {
-		//open_in_Chrome("https://www.economist.com/business/2018/07/19/the-nord-stream-2-pipeline-will-strengthen-russias-hand");
 
 		final String ADRESS = "http://rss.nytimes.com/services/xml/rss/nyt/Technology.xml";
 		String[] links = readRSS(ADRESS);
-			System.out.println("# of non-null elements : "+ non_null_lentgh(links));
-			System.out.println("The array : ");
-			System.out.println();
+		System.out.println("# of non-null elements : "+ non_null_lentgh(links));
+		System.out.println("The array : ");
+		System.out.println();
 
-			for(int i = 0 ; i < non_null_lentgh(links) ; i++){
-				System.out.println(i + " - "+links[i]);
-				String name_article = "tmp/article"+i+".html";
-				//System.out.println("Saving...");
-				//saveHTMLdoc(links[i],name_article);
-			}
+		//Create new file
+
+
+
+
+		String listoflinks = new String();
+		for(int i = 0 ; i < non_null_lentgh(links) ; i++){
+			System.out.println(i + " - "+links[i]);
+			String name_article = "tmp/article"+i+".html";
+			System.out.println("Saving...");
+			listoflinks = listoflinks + links[i]+ "\n";
+		}			
+
+		try {
+			//Create new file
+			PrintWriter writer = new PrintWriter("the-file-name.txt", "UTF-8");
+
+			writer.println("HI ! 😎");
+			writer.println(listoflinks);
+			writer.close();
+		}
+		catch(IOException e ){
+			System.out.println("Error ! 🎃");
+
+		}
 		
 
 
