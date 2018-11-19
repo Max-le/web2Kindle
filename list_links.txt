@@ -1,10 +1,11 @@
-HI ! 😎
 https://www.nytimes.com/section/technology?partner=rss&amp;emc=rss
 https://www.nytimes.com/section/technology?partner=rss&amp;emc=rss
 https://www.nytimes.com/2018/11/09/business/yuval-noah-harari-silicon-valley.html?partner=rss&amp;emc=rss
 https://www.nytimes.com/2018/11/08/technology/google-arbitration-sexual-harassment.html?partner=rss&amp;emc=rss
 https://www.nytimes.com/2018/11/07/magazine/you-already-email-like-a-robot-why-not-automate-it.html?partner=rss&amp;emc=rss
 https://www.nytimes.com/2018/11/09/technology/social-media-midterm-elections.html?partner=rss&amp;emc=rss
+https://www.nytimes.com/2018/11/12/nyregion/amazon-queens-queensbridge-houses.html?partner=rss&amp;emc=rss
+https://www.nytimes.com/2018/11/11/business/media/nanoinfluencers-instagram-influencers.html?partner=rss&amp;emc=rss
 https://www.nytimes.com/2018/11/11/business/alibaba-singles-day.html?partner=rss&amp;emc=rss
 https://www.nytimes.com/2018/11/10/science/rocket-lab-launch.html?partner=rss&amp;emc=rss
 https://www.nytimes.com/2018/11/10/science/chemical-weapons-world-war-1-armistice.html?partner=rss&amp;emc=rss
@@ -38,7 +39,4 @@ https://www.nytimes.com/2018/11/05/technology/twitter-fake-news-midterm-election
 https://www.nytimes.com/2018/11/05/us/politics/misinformation-election-day.html?partner=rss&amp;emc=rss
 https://www.nytimes.com/2018/11/05/business/china-silicon-valley-technology.html?partner=rss&amp;emc=rss
 https://www.nytimes.com/2018/11/05/science/hu-robotics.html?partner=rss&amp;emc=rss
-https://www.nytimes.com/2018/11/04/us/politics/election-misinformation-facebook.html?partner=rss&amp;emc=rss
-https://www.nytimes.com/2018/11/04/reader-center/how-we-cover-elections-interactive-maps.html?partner=rss&amp;emc=rss
-https://www.nytimes.com/2018/11/04/technology/abebooks-amazon-protest-booksellers.html?partner=rss&amp;emc=rss
 

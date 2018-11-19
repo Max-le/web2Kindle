@@ -13,41 +13,44 @@ public class Kindle{
 
 		final String ADRESS = "http://rss.nytimes.com/services/xml/rss/nyt/Technology.xml";
 		String[] links = readRSS(ADRESS);
-		System.out.println("# of non-null elements : "+ non_null_lentgh(links));
-		System.out.println("The array : ");
-		System.out.println();
-
-		//Create new file
-
-
-
-
+		
 		String listoflinks = new String();
 		for(int i = 0 ; i < non_null_lentgh(links) ; i++){
 			System.out.println(i + " - "+links[i]);
-			String name_article = "tmp/article"+i+".html";
-			System.out.println("Saving...");
 			listoflinks = listoflinks + links[i]+ "\n";
-		}			
+		}	
+
+		//Put old links in txt file in a Scanner
+		Scanner olds = new Scanner("list_links.txt");
 
 		try {
 			//Create new file
-			PrintWriter writer = new PrintWriter("the-file-name.txt", "UTF-8");
+			PrintWriter writer = new PrintWriter("list_links.txt", "UTF-8");
 
-			writer.println("HI ! 😎");
 			writer.println(listoflinks);
 			writer.close();
 		}
 		catch(IOException e ){
 			System.out.println("Error ! 🎃");
-
 		}
 		
+		Scanner list = readtxtfile("list_links.txt");
+		int j = 0 ; 
+		while (list.hasNextLine()){
+			System.out.println("READING VIA SCANNER "+list.nextLine());
+			j++;
+		}
 
 
 		}//End MAIN
+
+
+		/** This methods extracts the element with the tag "link" from a xml file.
+		@param adress A url link to a rss file ( .xml )
+		@return An array containing the elements  
+
+		**/
 		public static String[] readRSS(String adress){
-			System.out.println("URL adress : " +adress);
 
 			try{
 
@@ -65,7 +68,10 @@ public class Kindle{
 
 			//read line-by-line, continue loop while the current line is not empty
 				while ((line = in.readLine()) != null ){
+					//Change this keyword if you to extract something else ( for example the title )
 					String keyword = "link";
+
+
 					if (line.contains("<"+keyword+">")){
 						int firstPos = line.indexOf("<"+keyword+">");
 						if (DEBUG) System.out.println(firstPos);
@@ -141,6 +147,31 @@ public static void saveHTMLdoc(String adress,String outputName){
 	} 
 
 }// end saveHTMLDoc method
+
+//Returns a Scanner object from a txt file
+public static Scanner readtxtfile(String file){
+
+	try{
+	File inputFile = new File(file);
+	Scanner in = new Scanner(inputFile);
+	return in;
+
+}
+catch(FileNotFoundException e){
+	System.out.println("Error : file not found");
+	return null;
+}
+
+}
+
+
+//Create a narray with the links from a txt file 
+public static String[] txtToArray(String txtfile){
+
+	Scanner 
+	String[] list = new list[]
+	 
+}
 }
 
 
