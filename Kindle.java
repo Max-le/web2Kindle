@@ -5,6 +5,7 @@ import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
 
+
 public class Kindle{
 
 	static final boolean DEBUG = true ; 
@@ -40,6 +41,9 @@ public class Kindle{
 			System.out.println("READING VIA SCANNER "+list.nextLine());
 			j++;
 		}
+
+		System.out.println("Testing txtToArray()...");
+		System.out.println(Arrays.toString(txtToArray("list_links.txt")));
 
 
 		}//End MAIN
@@ -165,11 +169,46 @@ catch(FileNotFoundException e){
 }
 
 
-//Create a narray with the links from a txt file 
-public static String[] txtToArray(String txtfile){
+//Create an array with the links from a txt file 
+public static String[] txtToArray(String filename){
 
-	Scanner 
-	String[] list = new list[]
+ try {
+   File file = new File(filename);
+   Scanner scanner = new Scanner(file);
+   int c = 0 ; 
+   
+   while (scanner.hasNext()) {
+   	if (DEBUG) System.out.println("Reading with Scanner...");
+    System.out.println(scanner.next());
+
+    //counts number of lines in the file
+    c++;
+
+   }//end while loop
+
+   //Create array of size c
+   String[] list = new String[c];
+    Scanner scanner2 = new Scanner(file);
+
+
+   //add lines ( links) in the array 
+   int i = 0 ; 
+   while (scanner2.hasNext() & i < c ) {
+
+   	System.out.println("Copying to array...");
+   	list[i] = scanner2.next(); 
+
+   }
+   scanner.close();
+      return list; 
+
+  } 
+
+  catch (FileNotFoundException e) {
+   e.printStackTrace();
+   System.out.println("Error txtToArray ! ");
+   return null; 
+  } 
 	 
 }
 }
