@@ -24,6 +24,17 @@ let transporter = nodemailer.createTransport({
     to: 'max.09@outlook.com',
     subject: 'Message title',
     text: 'Plaintext version of the message',
-    html: '<p>HTML version of the message</p>'
+    html: '<p>HTML version of the message</p>',
+    attachments: [
+      {
+      filename: "article.html",
+      path: "/Users/max/Documents/GitHub/web2Kindle/resources/article.html"
+    },
+     {   // utf-8 string as an attachment
+      filename: 'text1.txt',
+      content: 'hello world!'
+  },
+
+    ]
 };
-transporter.sendMail(message)
+transporter.sendMail(message).then((msg)=> console.log(msg))
