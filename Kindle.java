@@ -8,209 +8,223 @@ import java.util.concurrent.TimeUnit;
 
 public class Kindle{
 
-	static final boolean DEBUG = true ; 
+    static final boolean DEBUG = true ;
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
+        //open_in_Chrome("https://www.economist.com/business/2018/07/19/the-nord-stream-2-pipeline-will-strengthen-russias-hand");
 
-		final String ADRESS = "http://rss.nytimes.com/services/xml/rss/nyt/Technology.xml";
-		String[] links = readRSS(ADRESS);
-		
-		String listoflinks = new String();
-		for(int i = 0 ; i < non_null_lentgh(links) ; i++){
-			System.out.println(i + " - "+links[i]);
-			listoflinks = listoflinks + links[i]+ "\n";
-		}	
+        final String ADRESS = "http://rss.nytimes.com/services/xml/rss/nyt/Technology.xml";
+        String[] links = readRSS(ADRESS);
+<<<<<<< HEAD
 
-		//Put old links in txt file in a Scanner
-		Scanner olds = new Scanner("list_links.txt");
+        String listoflinks = new String();
+        for(int i = 0 ; i < non_null_lentgh(links) ; i++){
+            System.out.println(i + " - "+links[i]);
+            listoflinks = listoflinks + links[i]+ "\n";
+        }
 
-		try {
-			//Create new file
-			PrintWriter writer = new PrintWriter("list_links.txt", "UTF-8");
+        //Put old links in txt file in a Scanner
+        Scanner olds = new Scanner("list_links.txt");
 
-			writer.println(listoflinks);
-			writer.close();
-		}
-		catch(IOException e ){
-			System.out.println("Error ! 🎃");
-		}
-		
-		Scanner list = readtxtfile("list_links.txt");
-		int j = 0 ; 
-		while (list.hasNextLine()){
-			System.out.println("READING VIA SCANNER "+list.nextLine());
-			j++;
-		}
+        try {
+            //Create new file
+            PrintWriter writer = new PrintWriter("list_links.txt", "UTF-8");
 
-		System.out.println("Testing txtToArray()...");
-		System.out.println(Arrays.toString(txtToArray("list_links.txt")));
+            writer.println(listoflinks);
+            writer.close();
+        }
+        catch(IOException e ){
+            System.out.println("Error ! 🎃");
+        }
+=======
+        System.out.println("# of non-null elements : "+ non_null_lentgh(links));
+        System.out.println("The array : ");
+        System.out.println();
 
+        for(int i = 0 ; i < non_null_lentgh(links) ; i++){
+            System.out.println(i + " - "+links[i]);
+            String name_article = "tmp/article"+i+".html";
+            //System.out.println("Saving...");
+            //saveHTMLdoc(links[i],name_article);
+        }
+>>>>>>> parent of 294b406... cool stuff
 
-		}//End MAIN
+        Scanner list = readtxtfile("list_links.txt");
+        int j = 0 ;
+        while (list.hasNextLine()){
+            System.out.println("READING VIA SCANNER "+list.nextLine());
+            j++;
+        }
 
-
-		/** This methods extracts the element with the tag "link" from a xml file.
-		@param adress A url link to a rss file ( .xml )
-		@return An array containing the elements  
-
-		**/
-		public static String[] readRSS(String adress){
-
-			try{
-
-			//Array to store items
-				String[] items = new String[10000];
-
-		//Create URL Object 
-				URL rssURL = new URL(adress);
-
-				BufferedReader in = new BufferedReader( new InputStreamReader(rssURL.openStream()));
-
-				String source_code="";
-				String line;
-				int index_array = 0;
-
-			//read line-by-line, continue loop while the current line is not empty
-				while ((line = in.readLine()) != null ){
-					//Change this keyword if you to extract something else ( for example the title )
-					String keyword = "link";
+        System.out.println("Testing txtToArray()...");
+        System.out.println(Arrays.toString(txtToArray("list_links.txt")));
 
 
-					if (line.contains("<"+keyword+">")){
-						int firstPos = line.indexOf("<"+keyword+">");
-						if (DEBUG) System.out.println(firstPos);
-						String temp = line.substring(firstPos);
-				//remove the tag ( replace by nothing)
-						temp = temp.replace("<"+keyword+">","");
-						int lastPos = temp.indexOf("</"+keyword+">");
-						if (DEBUG) System.out.println(lastPos);
-						temp = temp.substring(0, lastPos);
-						if (DEBUG) System.out.println("temp : "+temp);
-						items[index_array] = temp;
-						if (DEBUG) System.out.println(index_array + " in array : "+ items[index_array]);
-						source_code += temp + "\n \n"; 
-						index_array = index_array + 1 ;
-
-					}
-
-		}//end while loop
-		in.close();//close buffered reader
-		return items;
-	}
-	catch (MalformedURLException ue ){
-		System.out.println("Error : the url is incorrect.");
-	}
-	catch (IOException ioe ) {
-		System.out.println("Error while reading the contents.");
-	}
-	return null;
+    }//End MAIN
 
 
+    /** This methods extracts the element with the tag "link" from a xml file.
+     @param adress A url link to a rss file ( .xml )
+     @return An array containing the elements
+
+     **/
+    public static String[] readRSS(String adress){
+
+        try{
+
+            //Array to store items
+            String[] items = new String[10000];
+
+            //Create URL Object
+            URL rssURL = new URL(adress);
+
+            BufferedReader in = new BufferedReader( new InputStreamReader(rssURL.openStream()));
+
+            String source_code="";
+            String line;
+            int index_array = 0;
+
+            //read line-by-line, continue loop while the current line is not empty
+            while ((line = in.readLine()) != null ){
+                //Change this keyword if you to extract something else ( for example the title )
+                String keyword = "link";
+
+
+                if (line.contains("<"+keyword+">")){
+                    int firstPos = line.indexOf("<"+keyword+">");
+                    if (DEBUG) System.out.println(firstPos);
+                    String temp = line.substring(firstPos);
+                    //remove the tag ( replace by nothing)
+                    temp = temp.replace("<"+keyword+">","");
+                    int lastPos = temp.indexOf("</"+keyword+">");
+                    if (DEBUG) System.out.println(lastPos);
+                    temp = temp.substring(0, lastPos);
+                    if (DEBUG) System.out.println("temp : "+temp);
+                    items[index_array] = temp;
+                    if (DEBUG) System.out.println(index_array + " in array : "+ items[index_array]);
+                    source_code += temp + "\n \n";
+                    index_array = index_array + 1 ;
+
+                }
+
+            }//end while loop
+            in.close();//close buffered reader
+            return items;
+        }
+        catch (MalformedURLException ue ){
+            System.out.println("Error : the url is incorrect.");
+        }
+        catch (IOException ioe ) {
+            System.out.println("Error while reading the contents.");
+        }
+        return null;
 
 
 
-}// end readRSS method
-
-public static int non_null_lentgh(String[] a){
-	int i = 0;
-	while (a[i] != null) i++;
-	return i ; 
-}
-
-public static void saveHTMLdoc(String adress,String outputName){
 
 
-	try { 
+    }// end readRSS method
+
+    public static int non_null_lentgh(String[] a){
+        int i = 0;
+        while (a[i] != null) i++;
+        return i ;
+    }
+
+    public static void saveHTMLdoc(String adress,String outputName){
+
+
+        try {
 
             // Create URL object 
-		URL url = new URL(adress); 
-		BufferedReader readr =  
-		new BufferedReader(new InputStreamReader(url.openStream())); 
+            URL url = new URL(adress);
+            BufferedReader readr =
+                    new BufferedReader(new InputStreamReader(url.openStream()));
 
             // Enter filename in which you want to download 
-		BufferedWriter writer =  
-		new BufferedWriter(new FileWriter(outputName)); 
+            BufferedWriter writer =
+                    new BufferedWriter(new FileWriter(outputName));
 
             // read each line from stream till end 
-		String line; 
-		while ((line = readr.readLine()) != null) { 
-			writer.write(line); 
-		} 
+            String line;
+            while ((line = readr.readLine()) != null) {
+                writer.write(line);
+            }
 
-		readr.close(); 
-		writer.close(); 
-		System.out.println( outputName+" was successfully Downloaded."); 
-	} 
+            readr.close();
+            writer.close();
+            System.out.println( outputName+" was successfully Downloaded.");
+        }
 
         // Exceptions 
-	catch (MalformedURLException mue) { 
-		System.out.println("Malformed URL Exception raised"); 
-	} 
-	catch (IOException ie) { 
-		System.out.println("IOException raised"); 
-	} 
+        catch (MalformedURLException mue) {
+            System.out.println("Malformed URL Exception raised");
+        }
+        catch (IOException ie) {
+            System.out.println("IOException raised");
+        }
 
-}// end saveHTMLDoc method
+    }// end saveHTMLDoc method
 
-//Returns a Scanner object from a txt file
-public static Scanner readtxtfile(String file){
+    //Returns a Scanner object from a txt file
+    public static Scanner readtxtfile(String file){
 
-	try{
-	File inputFile = new File(file);
-	Scanner in = new Scanner(inputFile);
-	return in;
+        try{
+            File inputFile = new File(file);
+            Scanner in = new Scanner(inputFile);
+            return in;
 
-}
-catch(FileNotFoundException e){
-	System.out.println("Error : file not found");
-	return null;
-}
+        }
+        catch(FileNotFoundException e){
+            System.out.println("Error : file not found");
+            return null;
+        }
 
-}
-
-
-//Create an array with the links from a txt file 
-public static String[] txtToArray(String filename){
-
- try {
-   File file = new File(filename);
-   Scanner scanner = new Scanner(file);
-   int c = 0 ; 
-   
-   while (scanner.hasNext()) {
-   	if (DEBUG) System.out.println("Reading with Scanner...");
-    System.out.println(scanner.next());
-
-    //counts number of lines in the file
-    c++;
-
-   }//end while loop
-
-   //Create array of size c
-   String[] list = new String[c];
-    Scanner scanner2 = new Scanner(file);
+    }
 
 
-   //add lines ( links) in the array 
-   int i = 0 ; 
-   while (scanner2.hasNext() & i < c ) {
+    //Create an array with the links from a txt file
+    public static String[] txtToArray(String filename){
 
-   	System.out.println("Copying to array...");
-   	list[i] = scanner2.next(); 
+        try {
+            File file = new File(filename);
+            Scanner scanner = new Scanner(file);
+            int c = 0 ;
 
-   }
-   scanner.close();
-      return list; 
+            while (scanner.hasNext()) {
+                if (DEBUG) System.out.println("Reading with Scanner...");
+                System.out.println(scanner.next());
 
-  } 
+                //counts number of lines in the file
+                c++;
 
-  catch (FileNotFoundException e) {
-   e.printStackTrace();
-   System.out.println("Error txtToArray ! ");
-   return null; 
-  } 
-	 
-}
+            }//end while loop
+
+            //Create array of size c
+            String[] list = new String[c];
+            Scanner scanner2 = new Scanner(file);
+
+
+            //add lines ( links) in the array
+            int i = 0 ;
+            while (scanner2.hasNext() & i < c ) {
+
+                System.out.println("Copying to array...");
+                list[i] = scanner2.next();
+
+            }
+            scanner.close();
+            return list;
+
+        }
+
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("Error txtToArray ! ");
+            return null;
+        }
+
+    }
 }
 
 
