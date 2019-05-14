@@ -1,0 +1,26 @@
+{
+  "name": "web2kindle",
+  "version": "1.0.0",
+  "description": "A service to receive news articles on your Amazon's Kindle device",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Max-le/web2Kindle.git"
+  },
+  "keywords": [
+    "news",
+    "kindle"
+  ],
+  "author": "Max",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Max-le/web2Kindle/issues"
+  },
+  "homepage": "https://github.com/Max-le/web2Kindle#readme",
+  "dependencies": {
+    "nodemailer": "^6.1.1"
+  }
+}

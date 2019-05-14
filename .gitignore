@@ -1,8 +1,2 @@
-.DS_Store
-Kindle.class
-
-tmp/
-
-*.class
-*.class
-Kindle.class
+credentials.js
+/node_modules
